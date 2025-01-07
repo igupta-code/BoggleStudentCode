@@ -6,6 +6,14 @@ public class Boggle {
     public static String[] findWords(char[][] board, String[] dictionary) {
 
         ArrayList<String> goodWords = new ArrayList<String>();
+        ArrayList<String> boardWords = new ArrayList<String>();
+
+        // BFS all the words in the board
+
+
+        // Add all the words in the dictionary to a tst
+
+        // Compare the words to each other
 
         // TODO: Complete the function findWords(). Add all words that are found both on the board
         //  and in the dictionary.
