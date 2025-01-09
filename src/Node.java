@@ -7,7 +7,7 @@ public class Node {
 
     public Node(){
         this.isWord = false;
-        this.next = new Node[255];
+        this.next = new Node[26];
     }
 
 
