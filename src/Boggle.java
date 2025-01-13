@@ -39,21 +39,18 @@ public class Boggle {
     }
 
     public static void DFS(char[][] board, int row, int col, String prefix, TST.Node node){
+
         // Base case: out of bounds
         if(board.length <= row || board[0].length <= col || row < 0 || col < 0)
             return;
-        node = dict.nextNode(node, board[row][col]);
-        // Base case: been here before
+        if(node.getLetter() != board[row][col])
+            node = dict.nextNode(node.getMid(), board[row][col]);
+        // Base case: been here before or if word doesn't exit in tst (node will = null)
         if(board[row][col] == '0' || node == null)
             return;
-        // Add the current node to your prefix to find the current word you are on
-        String word = prefix + node.getLetter();
-        // Check if it's a valid word and if it's a duplicate
-        if(node.getIsWord() && !foundWords.lookUp(word)){
-            // Add the current node to your prefix and add it to list of valid words
-            goodWords.add(word);
-            foundWords.insert(word);
-        }
+
+
+
 
         // Moves to the next spot in the TST in order to recurse
         //TST.Node next = dict.nextNode(node, board[row-1][col]);
@@ -63,6 +60,7 @@ public class Boggle {
         board[row][col] = '0';
 
         // Recurse in all four directions
+
         DFS(board, row, col - 1, prefix + holder, node);
         DFS(board, row, col + 1, prefix + holder, node);
         DFS(board, row - 1, col, prefix + holder, node);

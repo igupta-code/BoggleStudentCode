@@ -25,6 +25,9 @@ public class TST{
         public char getLetter(){
             return letter;
         }
+        public Node getMid(){
+            return mid;c
+        }
 
     }
 
