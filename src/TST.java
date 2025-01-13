@@ -5,7 +5,7 @@ public class TST{
     private Node root;
 
     // Node class
-    private class Node{
+    public class Node{
         private Node left, mid, right;
         private char letter;
         private boolean isWord;
@@ -17,10 +17,23 @@ public class TST{
         private Node(){
             this.letter = EMPTY;
         }
+
+        public boolean getIsWord(){
+            return isWord;
+        }
+
+        public char getLetter(){
+            return letter;
+        }
+
     }
 
     public TST(){
         root = new Node();
+    }
+
+    public Node getRoot(){
+        return root;
     }
 
     // Inserts a new string into the tst
@@ -60,10 +73,26 @@ public class TST{
         return node;
     }
 
+    public Node nextNode(Node node, char letter){
+        if(node == null)
+            return null;
+
+        // If the node is correct, accept it by move onto the middle node, else recurse right or left
+        if(letter == node.letter) {
+            return node.mid;
+        }
+        // Return the next node (either left or right in the tst)
+        else if(letter > node.letter)
+            return nextNode(node.right, letter);
+        else
+            return nextNode(node.left, letter);
+    }
     // Checks if given word is in the TST
     public boolean lookUp(String s){
         return lookUp(s, root, 0);
     }
+
+
 
     public boolean lookUp(String s, Node node, int index){
         // Base: you are at the end of a branch and haven't found your word
