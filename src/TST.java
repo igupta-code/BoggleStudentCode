@@ -79,7 +79,7 @@ public class TST{
 
         // If the node is correct, accept it by move onto the middle node, else recurse right or left
         if(letter == node.letter) {
-            return node.mid;
+            return node;
         }
         // Return the next node (either left or right in the tst)
         else if(letter > node.letter)
@@ -87,6 +87,7 @@ public class TST{
         else
             return nextNode(node.left, letter);
     }
+
     // Checks if given word is in the TST
     public boolean lookUp(String s){
         return lookUp(s, root, 0);
