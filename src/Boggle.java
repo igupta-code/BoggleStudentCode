@@ -4,7 +4,6 @@ import java.util.Arrays;
 public class Boggle {
     public static TST dict,
             foundWords;
-    public String prefix = "";
     public static ArrayList<String> goodWords;
 
     // public static boolean[][] hasVisited;
@@ -39,32 +38,36 @@ public class Boggle {
     }
 
     public static void DFS(char[][] board, int row, int col, String prefix, TST.Node node){
-
         // Base case: out of bounds
         if(board.length <= row || board[0].length <= col || row < 0 || col < 0)
             return;
-        if(node.getLetter() != board[row][col])
-            node = dict.nextNode(node.getMid(), board[row][col]);
-        // Base case: been here before or if word doesn't exit in tst (node will = null)
+        //node = dict.nextNode(node, board[row][col]);
+        // Base case: been here before
         if(board[row][col] == '0' || node == null)
             return;
-
-
-
+        // Add the current node to your prefix to find the current word you are on
+        String word = prefix + board[row][col];
 
         // Moves to the next spot in the TST in order to recurse
-        //TST.Node next = dict.nextNode(node, board[row-1][col]);
+        TST.Node next = dict.nextNode(node, board[row][col]);
+
+        // Check if it's a valid word and if it's a duplicate
+        if(next.getIsWord() && !foundWords.lookUp(word)){
+            // Add the current node to your prefix and add it to list of valid words
+            goodWords.add(word);
+            foundWords.insert(word);
+        }
+
 
         // Create a temporary variable to hold board's value, and set board to hasVisited(indicated with 0)
         char holder = board[row][col];
         board[row][col] = '0';
 
         // Recurse in all four directions
-
-        DFS(board, row, col - 1, prefix + holder, node);
-        DFS(board, row, col + 1, prefix + holder, node);
-        DFS(board, row - 1, col, prefix + holder, node);
-        DFS(board, row + 1, col, prefix + holder, node);
+        DFS(board, row, col - 1, prefix + holder, next);
+        DFS(board, row, col + 1, prefix + holder, next);
+        DFS(board, row - 1, col, prefix + holder, next);
+        DFS(board, row + 1, col, prefix + holder, next);
 
         // Unmark the square as visited (give its original value back to it) so it recurses w/all possibilities
         board[row][col] = holder;

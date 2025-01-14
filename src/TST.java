@@ -26,7 +26,7 @@ public class TST{
             return letter;
         }
         public Node getMid(){
-            return mid;c
+            return mid;
         }
 
     }

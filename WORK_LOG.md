@@ -9,6 +9,7 @@ Name: YOUR NAME HERE
 | Jan 12th | 3;45-4:15  | I wasn't accessing the next node correctly in my tst -- I was just getting the next node to the left or right not actually the next node that matched with my next letter. I fixed that and realized my last letter was being chopped off when adding words to the goodWords array. I have to figure out the repeat issue now. |
 | Jan 12th | 4:15-4:55  |                                                                                                                                                             I resolved the duplicate issue for the first two test cases, but I am missing some words in the bigger test cases. I'm using the debugger but am not sure why yet. |
 | Jan 12th | 5:30-6:30  |                                                                                                                                                                                                                                                   After trying to debug for so long I think i might just not pass in the node. |
+|          |            |                                                                                                                                                                                                                                             Tried debugging for awhile and couldn't get it to work... might just turned it in. |
 
 
 To add a new row to the table, click into a cell and then hit shift-enter.
